@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Management</title>
+	<style>
+		body{
+			background: #203A43;
+			overflow: hidden;
+			padding: 9px;
+		}
+		.container{
+			display: grid;
+			grid-template-columns: 20% 80%;
+		}
+		.headdesign{
+			background: yellow;
+			text-transform: uppercase;
+			font-weight: bold;
+			border: 2px solid black;
+			padding: 15px;
+			border-radius: 15px;
+		}
+		.grid{
+			margin-left: 20px;
+			display: grid;
+			grid-template-columns: 20% 20% 20% 20% 20%;
+		}
+		.element{
+			margin: 3px;
+			background: white;
+			height: 50px;
+			font-weight: bolder;
+			border-radius: 5px;
+			border: 1px solid black;
+		}
+
+		.element:hover{
+			background: #00ff00;
+			cursor: pointer;
+		}
+
+		.element p{
+			vertical-align: middle;
+			text-align: center;
+			color: black;
+		}
+
+		.list{
+			background: white;
+			height: 500px;
+			margin: 5px;
+			border-radius: 5px;
+			border: 1px solid black;
+			overflow-y: scroll;
+		}
+
+		.list ul{
+			list-style:none;
+		}
+
+		.list li{
+			list-style: none;
+		}
+
+		.list li:hover{
+			background: #2196f3;
+			cursor: pointer;
+			color: white;
+		}
+	</style>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script>
+		var taken = [];
+		var suggested = 0;
+
+		function allowDrop(e) {
+		  e.preventDefault();
+		}
+
+		function drag(e) {
+		  e.dataTransfer.setData("text/plain", e.target.id);
+		  for(var i=1 ; i<=45 ; i++){
+		  	if(!taken.includes(i)){
+		  		suggested = i; break;
+		  	}
+		  }
+
+		  document.getElementById("g"+suggested).style.background = "#00ff00";
+		}
+
+		function drop(e, pos) {
+		  e.preventDefault();
+		  if(!taken.includes(pos)){
+		  	taken.push(pos);
+		    var data = e.dataTransfer.getData("text");
+		    var text = document.getElementById(data);
+		    e.target.appendChild(text);
+		    document.getElementById("g"+suggested).style.background = "#ffffff";
+		    e.target.style.background = "#2196f3";
+		    e.target.style.color = "#ffffff";
+		    e.target.getElementsByTagName("li")[0].removeAttribute('draggable');
+		  }
+		}
+	</script>
+</head>
+<body>
+	<center><h1 class="headdesign">User Management</h1></center>
+
+	<div class="container">
+		<div class="list">
+			<ul class="w3-ul w3-border">
+			  <li draggable="true" ondragstart="drag(event)" id="l0" style="list-style: none; text-align: center;">Rajat Bhanarkar</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l1" style="list-style: none; text-align: center;">Mahima Talegaonkar</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l2" style="list-style: none; text-align: center;">Varun Jaiswal</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l3" style="list-style: none; text-align: center;">Prayagraj Kashyap</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l4" style="list-style: none; text-align: center;">Praja Bobde</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l5" style="list-style: none; text-align: center;">Muskan Chourasia</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l6" style="list-style: none; text-align: center;">Siddharth Golechcha</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l7" style="list-style: none; text-align: center;">Punit Gandecha</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l8" style="list-style: none; text-align: center;">Omkar Arora</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l9" style="list-style: none; text-align: center;">Yavar Vazir</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l10" style="list-style: none; text-align: center;">Abhijeet Jha</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l11" style="list-style: none; text-align: center;">Shrasti Gupta</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l12" style="list-style: none; text-align: center;">Sanjana Jalgaonkar</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l13" style="list-style: none; text-align: center;">Riya Mohanty</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l14" style="list-style: none; text-align: center;">Tejas Deo</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l15" style="list-style: none; text-align: center;">Manjiri Butolia</li>
+			  <li draggable="true" ondragstart="drag(event)" id="l16" style="list-style: none; text-align: center;">Pankhudi Tiwari</li>
+			</ul>
+		</div>
+		<div class="grid"> 
+			<div class="element" ondrop="drop(event, 1)" ondragover="allowDrop(event)" id="g1"><p></p></div> 
+			<div class="element" ondrop="drop(event, 2)" ondragover="allowDrop(event)" id="g2"><p></p></div> 
+			<div class="element" ondrop="drop(event, 3)" ondragover="allowDrop(event)" id="g3"><p></p></div> 
+			<div class="element" ondrop="drop(event, 4)" ondragover="allowDrop(event)" id="g4"><p></p></div> 
+			<div class="element" ondrop="drop(event, 5)" ondragover="allowDrop(event)" id="g5"><p></p></div> 
+			<div class="element" ondrop="drop(event, 6)" ondragover="allowDrop(event)" id="g6"><p></p></div> 
+			<div class="element" ondrop="drop(event, 7)" ondragover="allowDrop(event)" id="g7"><p></p></div> 
+			<div class="element" ondrop="drop(event, 8)" ondragover="allowDrop(event)" id="g8"><p></p></div> 
+			<div class="element" ondrop="drop(event, 9)" ondragover="allowDrop(event)" id="g9"><p></p></div> 
+			<div class="element" ondrop="drop(event, 10)" ondragover="allowDrop(event)" id="g10"><p></p></div> 
+			<div class="element" ondrop="drop(event, 11)" ondragover="allowDrop(event)" id="g11"><p></p></div> 
+			<div class="element" ondrop="drop(event, 12)" ondragover="allowDrop(event)" id="g12"><p></p></div> 
+			<div class="element" ondrop="drop(event, 13)" ondragover="allowDrop(event)" id="g13"><p></p></div> 
+			<div class="element" ondrop="drop(event, 14)" ondragover="allowDrop(event)" id="g14"><p></p></div> 
+			<div class="element" ondrop="drop(event, 15)" ondragover="allowDrop(event)" id="g15"><p></p></div> 
+			<div class="element" ondrop="drop(event, 16)" ondragover="allowDrop(event)" id="g16"><p></p></div> 
+			<div class="element" ondrop="drop(event, 17)" ondragover="allowDrop(event)" id="g17"><p></p></div> 
+			<div class="element" ondrop="drop(event, 18)" ondragover="allowDrop(event)" id="g18"><p></p></div> 
+			<div class="element" ondrop="drop(event, 19)" ondragover="allowDrop(event)" id="g19"><p></p></div> 
+			<div class="element" ondrop="drop(event, 20)" ondragover="allowDrop(event)" id="g20"><p></p></div> 
+			<div class="element" ondrop="drop(event, 21)" ondragover="allowDrop(event)" id="g21"><p></p></div> 
+			<div class="element" ondrop="drop(event, 22)" ondragover="allowDrop(event)" id="g22"><p></p></div> 
+			<div class="element" ondrop="drop(event, 23)" ondragover="allowDrop(event)" id="g23"><p></p></div> 
+			<div class="element" ondrop="drop(event, 24)" ondragover="allowDrop(event)" id="g24"><p></p></div> 
+			<div class="element" ondrop="drop(event, 25)" ondragover="allowDrop(event)" id="g25"><p></p></div> 
+			<div class="element" ondrop="drop(event, 26)" ondragover="allowDrop(event)" id="g26"><p></p></div> 
+			<div class="element" ondrop="drop(event, 27)" ondragover="allowDrop(event)" id="g27"><p></p></div> 
+			<div class="element" ondrop="drop(event, 28)" ondragover="allowDrop(event)" id="g28"><p></p></div> 
+			<div class="element" ondrop="drop(event, 29)" ondragover="allowDrop(event)" id="g29"><p></p></div> 
+			<div class="element" ondrop="drop(event, 30)" ondragover="allowDrop(event)" id="g30"><p></p></div> 
+			<div class="element" ondrop="drop(event, 31)" ondragover="allowDrop(event)" id="g31"><p></p></div> 
+			<div class="element" ondrop="drop(event, 32)" ondragover="allowDrop(event)" id="g32"><p></p></div> 
+			<div class="element" ondrop="drop(event, 33)" ondragover="allowDrop(event)" id="g33"><p></p></div> 
+			<div class="element" ondrop="drop(event, 34)" ondragover="allowDrop(event)" id="g34"><p></p></div> 
+			<div class="element" ondrop="drop(event, 35)" ondragover="allowDrop(event)" id="g35"><p></p></div> 
+			<div class="element" ondrop="drop(event, 36)" ondragover="allowDrop(event)" id="g36"><p></p></div> 
+			<div class="element" ondrop="drop(event, 37)" ondragover="allowDrop(event)" id="g37"><p></p></div> 
+			<div class="element" ondrop="drop(event, 38)" ondragover="allowDrop(event)" id="g38"><p></p></div> 
+			<div class="element" ondrop="drop(event, 39)" ondragover="allowDrop(event)" id="g39"><p></p></div> 
+			<div class="element" ondrop="drop(event, 40)" ondragover="allowDrop(event)" id="g40"><p></p></div> 
+			<div class="element" ondrop="drop(event, 41)" ondragover="allowDrop(event)" id="g41"><p></p></div> 
+			<div class="element" ondrop="drop(event, 42)" ondragover="allowDrop(event)" id="g42"><p></p></div> 
+			<div class="element" ondrop="drop(event, 43)" ondragover="allowDrop(event)" id="g43"><p></p></div> 
+			<div class="element" ondrop="drop(event, 44)" ondragover="allowDrop(event)" id="g44"><p></p></div> 
+			<div class="element" ondrop="drop(event, 45)" ondragover="allowDrop(event)" id="g45"><p></p></div> 
+		</div>
+	</div>
+</body>
+</html>
